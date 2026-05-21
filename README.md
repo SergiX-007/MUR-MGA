@@ -78,7 +78,7 @@ Pour que le service worker fonctionne (cache offline, installation), le fichier 
 python3 -m http.server 8080
 # puis ouvrir http://localhost:8080
 ```
-Ou bien aller sur le lien de la page Github : [![Cliquer ici](https://sergix-007.github.io/MUR-MGA/)]
+Ou bien aller sur le lien de la page Github : [[Cliquer ici](https://sergix-007.github.io/MUR-MGA/)]
 
 Sur Chrome / Edge : bouton **"Installer"** dans la barre d'adresse.  
 Sur iOS Safari : **Partager → Sur l'écran d'accueil**.
