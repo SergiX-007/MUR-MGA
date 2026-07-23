@@ -1,0 +1,10 @@
+:root{
+  /* Unusual scale: tiny (<=6), medium-large (20-40), or full pill (99+).
+     The 8-16 middle ground is intentionally absent. */
+  --radius-xs:4px;     /* micro-chips, cookie banner bits */
+  --radius-btn:20px;   /* primary & secondary body CTAs — signature */
+  --radius-consent:24px;/* consent / orange pill buttons */
+  --radius-stadium:40px;/* hero media frames, large containers, H2 pill labels */
+  --radius-pill:999px; /* nav, carousel cards, chips, country selector */
+  --radius-circle:50%; /* portraits, icon buttons, satellite CTAs */
+}

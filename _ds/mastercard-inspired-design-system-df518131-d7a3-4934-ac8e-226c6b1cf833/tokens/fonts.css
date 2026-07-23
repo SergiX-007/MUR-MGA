@@ -1,0 +1,4 @@
+/* Sofia Sans — open-source stand-in for MarkForMC (Mastercard's proprietary geometric sans).
+   Sofia Sans is the closest match and appears in Mastercard's own fallback stack.
+   Variable font: full 1..1000 weight range so the load-bearing 450 body weight resolves. */
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');

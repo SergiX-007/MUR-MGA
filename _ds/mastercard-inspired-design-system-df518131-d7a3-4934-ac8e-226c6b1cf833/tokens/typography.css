@@ -1,0 +1,37 @@
+:root{
+  /* Families — one-font system. Sofia Sans stands in for MarkForMC. */
+  --font-sans:'Sofia Sans','SofiaSans',Arial,sans-serif;
+  --font-display:var(--font-sans);
+  --font-body:var(--font-sans);
+
+  /* Weights — 450 is load-bearing (softer than 500, firmer than 400) */
+  --fw-body:450;    /* @kind other */
+  --fw-medium:500;  /* @kind other */
+  --fw-bold:700;    /* @kind other */
+
+  /* Sizes */
+  --fs-h1:64px;      /* hero */
+  --fs-h2:36px;      /* section / ghost watermark */
+  --fs-h3:24px;      /* card title */
+  --fs-h4:14px;      /* subhead */
+  --fs-eyebrow:14px; /* uppercase eyebrow */
+  --fs-body:16px;
+  --fs-nav:16px;
+  --fs-footer:14px;
+  --fs-footer-head:13px;
+  --fs-watermark:112px; /* ghost watermark headline */
+
+  /* Line heights */
+  --lh-h1:64px;      /* 1:1 */
+  --lh-h2:44px;
+  --lh-h3:28.8px;    /* 1.2 */
+  --lh-body:22.4px;  /* 1.4 */
+  --lh-nav:16px;
+
+  /* Letter-spacing — tight negative on display, +4% on eyebrow */
+  --ls-h1:-1.28px;   /* -2% */
+  --ls-h2:-0.72px;
+  --ls-h3:-0.48px;
+  --ls-nav:-0.48px;  /* -3% */
+  --ls-eyebrow:0.56px; /* +4% */
+}

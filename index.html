@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/colors.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/typography.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/radii.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/styles.css">
+<script src="_ds/mastercard-inspired-design-system-df518131-d7a3-4934-ac8e-226c6b1cf833/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--canvas-cream);font-family:'Sofia Sans','SofiaSans',Arial,sans-serif;color:var(--ink-black);transition:background-color .45s ease,color .45s ease;-webkit-font-smoothing:antialiased}
+  *{box-sizing:border-box}
+  a{color:var(--ink-black);text-decoration:none;transition:opacity .14s ease}
+  a:hover{opacity:.6}
+  input::placeholder{color:var(--dust-taupe)}
+  h1,h2,h3,p{text-wrap:pretty}
+  @keyframes spinSlow{to{transform:rotateX(64deg) rotate(360deg)}}
+  @keyframes spinRev{to{transform:rotateX(58deg) rotate(-360deg)}}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-34px,0)}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(26px,28px,0)}}
+  @keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes flow{to{stroke-dashoffset:-1200}}
+  @keyframes coinSpin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+  @keyframes pulseDot{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes sheen{0%{transform:translateX(-160%) skewX(-18deg)}55%,100%{transform:translateX(300%) skewX(-18deg)}}
+  :root{--radius-xs:7px;--radius-btn:7px;--radius-consent:7px;--radius-stadium:7px;--radius-pill:7px}
+  /* Panneaux "ink" dramatiques : sombres & lisibles en clair ET en sombre (ne pas laisser --ink-black basculer ici) */
+  :root{--ink-panel:#141413;--ink-panel-text:#F3F0EE;--ink-panel-sub:rgba(255,255,255,.72)}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}}
+</style>
+</helmet>
+<div id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;background:var(--canvas-cream);overflow-x:hidden">
+
+  <!-- ANIMATED 3D BACKGROUND -->
+  <div aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden">
+    
+    
+    <div style="position:absolute;top:22%;left:6%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(243,115,56,.16),transparent 62%);filter:blur(6px);animation:floatA 13s ease-in-out infinite"></div>
+    <div style="position:absolute;bottom:16%;right:14%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(207,69,0,.12),transparent 64%);filter:blur(6px);animation:floatB 17s ease-in-out infinite"></div>
+  </div>
+
+  <!-- NAV -->
+  <div style="position:sticky;top:24px;z-index:60;display:flex;justify-content:center;padding:0 20px;margin-top:24px">
+    <nav style="position:relative;display:flex;align-items:center;gap:20px;background:var(--white);border-radius:7px;box-shadow:var(--shadow-nav);padding:11px 14px 11px 26px;width:min(1180px,100%);border:1px solid var(--border-hairline)">
+      <a onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;flex:0 0 auto;cursor:pointer">
+        <span style="width:11px;height:11px;border-radius:50%;background:var(--signal-orange-light);display:inline-block;box-shadow:0 0 0 4px color-mix(in srgb,var(--signal-orange-light) 22%,transparent)"></span>
+        <span style="font-size:23px;font-weight:700;letter-spacing:-0.8px;color:var(--ink-black)">ALEFA VE</span>
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <ul style="display:flex;align-items:center;gap:34px;list-style:none;margin:0;padding:0;flex:1;justify-content:center">
+          <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="4">
+            <li><a onClick="{{ l.onClick }}" style="{{ l.style }}">{{ l.label }}</a></li>
+          </sc-for>
+        </ul>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
+        <button onClick="{{ toggleTheme }}" aria-label="Basculer le thème" title="Thème clair / sombre" style="width:44px;height:44px;border-radius:7px;border:1.5px solid var(--ink-black);background:transparent;color:var(--ink-black);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px"><i class="{{ themeIcon }}" aria-hidden="true"></i></button>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="primary" size="md" icon="bi-arrow-right" onClick="{{ goStart }}" hint-size="150px,40px">Envoyer</x-import>
+        </sc-if>
+        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:44px;height:44px;border-radius:7px;border:1.5px solid var(--ink-black);background:transparent;color:var(--ink-black);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:19px"><i class="{{ menuIcon }}" aria-hidden="true"></i></button>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:calc(100% + 12px);left:0;right:0;background:var(--white);border:1px solid var(--border-hairline);border-radius:7px;box-shadow:var(--shadow-card);padding:14px;display:flex;flex-direction:column;gap:4px;animation:menuIn .22s ease both">
+          <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="4">
+            <a onClick="{{ l.onClick }}" style="{{ l.mobileStyle }}">{{ l.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+    </nav>
+  </div>
+
+  <!-- PAGES -->
+  <main style="position:relative;z-index:1;flex:1;width:100%">
+
+    <!-- ACCUEIL -->
+    <sc-if value="{{ isAccueil }}" hint-placeholder-val="{{ true }}">
+      <section style="max-width:1280px;margin:0 auto;padding:64px 48px 96px;animation:pageIn .5s cubic-bezier(.2,.7,.2,1) both">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:center">
+          <div>
+            <div style="animation:fadeUp .6s both .05s"><x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="120px,16px">Transfert Maurice → Madagascar</x-import></div>
+            <h1 style="margin:20px 0 22px;font-size:clamp(38px,5.4vw,64px);font-weight:500;letter-spacing:-1.4px;line-height:1.02;animation:fadeUp .6s both .12s">L'argent qui voyage à la vitesse de la famille.</h1>
+            <p style="margin:0 0 34px;max-width:480px;font-size:18px;font-weight:450;line-height:1.5;color:var(--granite);animation:fadeUp .6s both .2s">Envoyez depuis Maurice, reçu en ariary à Madagascar en quelques minutes. Un montant clair avant d'envoyer, aucune surprise.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .6s both .28s">
+              <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="primary" size="lg" icon="bi-arrow-right" onClick="{{ goStart }}" hint-size="220px,56px">Commencer un transfert</x-import>
+              <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="secondary" size="lg" onClick="{{ goEtapes }}" hint-size="190px,56px">Comment ça marche</x-import>
+            </div>
+            <div style="display:flex;gap:32px;margin-top:44px;flex-wrap:wrap;animation:fadeUp .6s both .36s">
+              <div><div style="font-size:30px;font-weight:600;letter-spacing:-1px;color:var(--ink-black)">2 min</div><div style="font-size:13px;color:var(--slate-gray);margin-top:2px">pour envoyer</div></div>
+              <div><div style="font-size:30px;font-weight:600;letter-spacing:-1px;color:var(--ink-black)">24/7</div><div style="font-size:13px;color:var(--slate-gray);margin-top:2px">disponible</div></div>
+              <div><div style="font-size:30px;font-weight:600;letter-spacing:-1px;color:var(--ink-black)">0</div><div style="font-size:13px;color:var(--slate-gray);margin-top:2px">frais caché</div></div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR (results only) -->
+          <div style="justify-self:center;width:min(440px,100%);perspective:1200px;animation:fadeUp .7s both .3s">
+            <div ref="{{ cardRef }}" onMouseMove="{{ onTilt }}" onMouseLeave="{{ onTiltLeave }}" style="background:var(--white);border-radius:7px;box-shadow:var(--shadow-card);padding:34px;border:1px solid var(--border-hairline);transform-style:preserve-3d;transition:transform .18s ease;will-change:transform">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+                <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="110px,16px">Estimation</x-import>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--slate-gray)"><span style="width:7px;height:7px;border-radius:50%;background:var(--signal-orange-light);animation:pulseDot 2s ease-in-out infinite"></span>{{ rateNote }}</span>
+              </div>
+
+              <div style="display:flex;gap:4px;background:var(--canvas-cream);border-radius:7px;padding:4px;margin-bottom:20px">
+                <button style="{{ recevoirStyle }}" onClick="{{ toggleRecevoir }}">Recevoir · Ar</button>
+                <button style="{{ envoyerStyle }}" onClick="{{ toggleEnvoyer }}">Envoyer · MUR</button>
+              </div>
+
+              <div style="background:var(--canvas-cream);border:1px solid var(--border-hairline);border-radius:7px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:12px;color:var(--slate-gray);margin-bottom:4px">{{ fieldLabel }}</div>
+                  <input ref="{{ inpRef }}" onInput="{{ onAmount }}" onBlur="{{ onAmountBlur }}" inputmode="decimal" autocomplete="off" aria-label="Montant" style="border:0;outline:none;background:transparent;font-family:'Sofia Sans',Arial,sans-serif;font-size:28px;font-weight:500;letter-spacing:-0.6px;width:100%;color:var(--ink-black)">
+                </div>
+                <div style="flex:0 0 auto;background:var(--white);border:1px solid var(--border-hairline);border-radius:7px;padding:8px 16px;font-size:14px;font-weight:600;color:var(--ink-black)">{{ fieldUnit }}</div>
+              </div>
+
+              <label style="display:flex;align-items:center;gap:10px;margin-top:18px;cursor:pointer;user-select:none">
+                <input type="checkbox" onChange="{{ onIncl }}" style="width:16px;height:16px;accent-color:var(--signal-orange);cursor:pointer">
+                <span style="font-size:13px;color:var(--slate-gray)">Retrait en espèces à l'arrivée</span>
+              </label>
+
+              <div style="margin-top:24px;padding:22px 24px;background:var(--ink-panel);border-radius:7px;overflow:hidden;position:relative">
+                <div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:0;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.13),transparent);animation:sheen 5s ease-in-out infinite;pointer-events:none"></div>
+                <div style="position:relative">
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--accent-arc)">{{ resultLabel }}</div>
+                  <div style="font-size:clamp(30px,7vw,40px);font-weight:600;letter-spacing:-1.2px;color:var(--ink-panel-text);margin-top:6px;line-height:1">{{ resultValue }}</div>
+                  <div style="font-size:13px;color:var(--ink-panel-sub);margin-top:8px">{{ resultSub }}</div>
+                </div>
+              </div>
+
+              <div style="margin-top:30px;display:grid">
+                <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="primary" size="lg" icon="bi-arrow-right" hint-size="100%,52px">Continuer</x-import>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:12.5px;color:var(--slate-gray)"><i class="bi bi-shield-check" aria-hidden="true"></i>Sécurité bancaire · reçu en minutes</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- AVANTAGES -->
+    <sc-if value="{{ isAvantages }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width:1280px;margin:0 auto;padding:56px 48px 96px;animation:pageIn .5s cubic-bezier(.2,.7,.2,1) both">
+        <div style="max-width:640px;margin-bottom:48px">
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="120px,16px">Avantages</x-import>
+          <h2 style="margin:16px 0 0;font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-1px;line-height:1.05">Pensé pour ceux qui comptent sur vous.</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:96px">
+          <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="4">
+            <div style="background:var(--white);border:1px solid var(--border-hairline);border-radius:7px;padding:30px;box-shadow:var(--shadow-nav);display:flex;flex-direction:column;gap:14px;min-height:210px;animation:fadeUp .5s both">
+              <span style="width:52px;height:52px;border-radius:50%;background:var(--canvas-cream);display:inline-flex;align-items:center;justify-content:center;font-size:22px;color:var(--signal-orange)"><i class="{{ b.icon }}" aria-hidden="true"></i></span>
+              <h3 style="margin:6px 0 0;font-size:21px;font-weight:500;letter-spacing:-0.4px;line-height:1.15">{{ b.title }}</h3>
+              <p style="margin:0;font-size:15px;font-weight:450;line-height:1.5;color:var(--granite)">{{ b.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- receive-options constellation -->
+        <div style="max-width:560px;margin-bottom:8px">
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="120px,16px">Sans frontières</x-import>
+          <h2 style="margin:16px 0 0;font-size:clamp(26px,3.4vw,40px);font-weight:500;letter-spacing:-0.9px;line-height:1.06">Reçu comme votre famille le souhaite.</h2>
+        </div>
+        <div style="position:relative;margin-top:44px">
+          <svg viewBox="0 0 1000 320" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
+            <path d="M140 230 C 360 50, 640 50, 860 200" fill="none" stroke="var(--accent-arc)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round" style="animation:flow 14s linear infinite"></path>
+          </svg>
+          <div style="position:relative;z-index:1;display:flex;gap:44px;flex-wrap:wrap;justify-content:center;align-items:flex-start">
+            <div><x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.PortraitCard" eyebrow="Recevoir" title="Retrait en espèces" diameter="250" hint-size="250px,340px"></x-import></div>
+            <div style="margin-top:64px"><x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.PortraitCard" eyebrow="Recevoir" title="Sur le portefeuille mobile" diameter="250" hint-size="250px,340px"></x-import></div>
+            <div style="margin-top:24px"><x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.PortraitCard" eyebrow="Recevoir" title="Recharge mobile" diameter="250" hint-size="250px,340px"></x-import></div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ETAPES -->
+    <sc-if value="{{ isEtapes }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width:1280px;margin:0 auto;padding:56px 48px 96px;animation:pageIn .5s cubic-bezier(.2,.7,.2,1) both">
+        <div style="max-width:640px;margin-bottom:52px">
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="120px,16px">Comment ça marche</x-import>
+          <h2 style="margin:16px 0 0;font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-1px;line-height:1.05">Trois étapes, deux minutes.</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+            <div style="background:var(--white);border:1px solid var(--border-hairline);border-radius:7px;padding:36px;box-shadow:var(--shadow-nav);display:flex;flex-direction:column;gap:16px;min-height:300px;animation:fadeUp .5s both">
+              <span style="font-size:13px;font-weight:700;letter-spacing:.56px;color:var(--signal-orange-light)">{{ s.num }}</span>
+              <span style="width:56px;height:56px;border-radius:50%;background:var(--canvas-cream);display:inline-flex;align-items:center;justify-content:center;font-size:24px;color:var(--ink-black)"><i class="{{ s.icon }}" aria-hidden="true"></i></span>
+              <h3 style="margin:4px 0 0;font-size:22px;font-weight:500;letter-spacing:-0.44px;line-height:1.18">{{ s.title }}</h3>
+              <p style="margin:0;font-size:15px;font-weight:450;line-height:1.5;color:var(--granite)">{{ s.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:56px;position:relative;border-radius:7px;overflow:hidden;background:var(--ink-panel);box-shadow:var(--shadow-card);padding:clamp(40px,6vw,72px)">
+          <svg viewBox="0 0 400 400" aria-hidden="true" style="position:absolute;top:-120px;right:-90px;width:400px;height:400px;opacity:.5">
+            <circle cx="200" cy="200" r="150" fill="none" stroke="var(--signal-orange-light)" stroke-width="1.5"></circle>
+            <circle cx="200" cy="200" r="110" fill="none" stroke="var(--signal-orange-light)" stroke-width="1" stroke-dasharray="2 8"></circle>
+          </svg>
+          <div style="position:relative;max-width:560px">
+            <h2 style="margin:0 0 22px;font-size:clamp(26px,3.8vw,44px);font-weight:500;letter-spacing:-1px;line-height:1.06;color:var(--ink-panel-text)">Prêt à faire votre premier envoi ?</h2>
+            <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="secondary" size="lg" icon="bi-arrow-right" onClick="{{ goStart }}" hint-size="220px,56px">Commencer maintenant</x-import>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- AIDE -->
+    <sc-if value="{{ isAide }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width:820px;margin:0 auto;padding:56px 48px 96px;animation:pageIn .5s cubic-bezier(.2,.7,.2,1) both">
+        <div style="margin-bottom:44px">
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Eyebrow" hint-size="120px,16px">Aide</x-import>
+          <h2 style="margin:16px 0 0;font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-1px;line-height:1.05">Les questions fréquentes.</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+            <div style="background:var(--white);border:1px solid var(--border-hairline);border-radius:7px;overflow:hidden;animation:fadeUp .4s both">
+              <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:transparent;border:0;cursor:pointer;padding:22px 26px;text-align:left;font-family:'Sofia Sans',Arial,sans-serif">
+                <span style="font-size:17px;font-weight:500;letter-spacing:-0.3px;color:var(--ink-black)">{{ f.q }}</span>
+                <i class="{{ f.icon }}" style="font-size:16px;color:var(--signal-orange-light);flex:0 0 auto" aria-hidden="true"></i>
+              </button>
+              <div style="{{ f.answerStyle }}">
+                <p style="margin:0;padding:0 26px 24px;font-size:15px;font-weight:450;line-height:1.55;color:var(--granite)">{{ f.a }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:36px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:26px 28px;background:var(--lifted-cream);border:1px solid var(--border-hairline);border-radius:7px">
+          <span style="font-size:15px;color:var(--granite);flex:1;min-width:200px">Une autre question ? Notre équipe répond en français et en malgache.</span>
+          <x-import component-from-global-scope="MastercardInspiredDesignSystem_df5181.Button" variant="primary" icon="bi-chat-dots" iconPosition="left" hint-size="180px,40px">Contacter le support</x-import>
+        </div>
+      </section>
+    </sc-if>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;z-index:1;border-top:1px solid var(--border-hairline);margin-top:8px">
+    <div style="max-width:1280px;margin:0 auto;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--signal-orange-light)"></span>
+        <span style="font-size:19px;font-weight:700;letter-spacing:-0.6px;color:var(--ink-black)">ALEFA VE</span>
+        <span style="font-size:13px;color:var(--slate-gray);margin-left:8px">Maurice → Madagascar</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px;color:var(--slate-gray)">
+        <a onClick="{{ goEtapes }}" style="cursor:pointer">Fonctionnement</a>
+        <a onClick="{{ goAide }}" style="cursor:pointer">Aide</a>
+        <a style="cursor:pointer">Confidentialité</a>
+        <a style="cursor:pointer">Conditions</a>
+        <span>© {{ year }} ALEFA VE</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;recevoir&quot;,&quot;options&quot;:[&quot;recevoir&quot;,&quot;envoyer&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Général&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dark&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Général&quot;},&quot;tauxMarge&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3.5,&quot;min&quot;:0,&quot;max&quot;:10,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tarification&quot;},&quot;fraisReseau&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:0,&quot;max&quot;:10,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tarification&quot;},&quot;fraisService&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0,&quot;max&quot;:10,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tarification&quot;}}">
+class Component extends DCLogic {
+  DARK = {
+    '--canvas-cream': '#17150F', '--lifted-cream': '#211E15', '--white': '#24211A',
+    '--soft-bone': '#201E18', '--ink-black': '#F2EEE6', '--charcoal': '#E8E3DA',
+    '--slate-gray': '#A7A199', '--granite': '#C4BEB4', '--graphite': '#B8B2A8',
+    '--dust-taupe': '#6B655C', '--whisper-cream': '#2A2720', '--border-hairline': 'rgba(242,238,230,.26)',
+    // Panneaux ink : restent un fond sombre lifté (jamais crème éblouissant) en dark
+    '--ink-panel': '#201C14',
+    // Accent orange plus lumineux pour rester lisible sur le fond très sombre
+    '--signal-orange': '#F0672E',
+    // Ombres visibles sur fond sombre (le noir pur disparaît sinon)
+    '--shadow-nav': 'rgba(0,0,0,.4) 0px 4px 24px 0px', '--shadow-card': 'rgba(0,0,0,.5) 0px 24px 48px 0px',
+  };
+
+  state = {
+    page: 'accueil', theme: 'dark', isMobile: false, menuOpen: false,
+    mode: 'recevoir', amountAr: 200000, amountMur: 2000,
+    marketRate: 103, live: false, incl: false, openFaq: 0,
+  };
+
+  inpRef = React.createRef();
+  cardRef = React.createRef();
+
+  get MARGE() { return this.props.tauxMarge ?? 3.5; }
+  get FRAIS_MOBILE() { return this.props.fraisReseau ?? 5; }
+  get FRAIS_SERVICE() { return this.props.fraisService ?? 2.5; }
+
+  componentDidMount() {
+    let theme = this.props.defaultTheme ?? 'dark';
+    try { const s = localStorage.getItem('volaTheme'); if (s === 'light' || s === 'dark') theme = s; } catch (e) {}
+    this.applyTheme(theme);
+    this.setState({ theme });
+
+    this.mq = window.matchMedia('(max-width: 820px)');
+    this.onMq = (e) => this.setState({ isMobile: e.matches, menuOpen: false });
+    this.setState({ isMobile: this.mq.matches });
+    this.mq.addEventListener ? this.mq.addEventListener('change', this.onMq) : this.mq.addListener(this.onMq);
+
+    const dm = this.props.defaultMode;
+    if (dm === 'envoyer' || dm === 'recevoir') this.setState({ mode: dm }, () => this.setFieldFromState());
+    else this.setFieldFromState();
+    this.fetchRate();
+  }
+
+  componentWillUnmount() {
+    if (this.mq) { this.mq.removeEventListener ? this.mq.removeEventListener('change', this.onMq) : this.mq.removeListener(this.onMq); }
+    const r = document.documentElement; Object.keys(this.DARK).forEach(k => r.style.removeProperty(k));
+  }
+
+  applyTheme(theme) {
+    const r = document.documentElement;
+    if (theme === 'dark') Object.keys(this.DARK).forEach(k => r.style.setProperty(k, this.DARK[k]));
+    else Object.keys(this.DARK).forEach(k => r.style.removeProperty(k));
+  }
+
+  toggleTheme() {
+    const theme = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.applyTheme(theme);
+    this.setState({ theme });
+    try { localStorage.setItem('volaTheme', theme); } catch (e) {}
+  }
+
+  go(page) { this.setState({ page, menuOpen: false }); if (typeof window !== 'undefined') window.scrollTo(0, 0); }
+  goStart() {
+    this.setState({ page: 'accueil', menuOpen: false }, () => { setTimeout(() => { if (this.inpRef.current) this.inpRef.current.focus(); }, 60); });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  onTilt(e) {
+    const el = this.cardRef.current; if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `rotateY(${px * 7}deg) rotateX(${-py * 7}deg) translateZ(0)`;
+  }
+  onTiltLeave() { const el = this.cardRef.current; if (el) el.style.transform = 'rotateY(0deg) rotateX(0deg)'; }
+
+  fraisRetrait(ar) {
+    if (ar <= 1000) return 0; if (ar <= 5000) return 200; if (ar <= 10000) return 350;
+    if (ar <= 25000) return 700; if (ar <= 100000) return 2000; if (ar <= 500000) return 5000; return 9500;
+  }
+  fmtMUR(n) { return new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Math.round(n)) + ' MUR'; }
+  fmtAr(n) { return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' Ar'; }
+  parseNum(t) { const v = parseFloat(String(t || '').replace(/[\s\u202f\u00a0]/g, '').replace(',', '.').replace(/[^0-9.]/g, '')); return isNaN(v) ? 0 : v; }
+  effRate() { return this.state.marketRate ? this.state.marketRate * (1 - this.MARGE / 100) : null; }
+
+  calcRecevoir() {
+    const eff = this.effRate(); if (!eff || this.state.amountAr <= 0) return null;
+    const montant = this.state.amountAr;
+    const retraitAr = this.fraisRetrait(montant);
+    const montantAEnvoyer = this.state.incl ? montant + retraitAr : montant;
+    const totalMGA = montantAEnvoyer * (1 + this.FRAIS_MOBILE / 100);
+    const purchaseMUR = totalMGA / eff;
+    const totalMUR = purchaseMUR * (1 + this.FRAIS_SERVICE / 100);
+    return { totalMUR, recuAr: montant };
+  }
+  calcEnvoyer() {
+    const eff = this.effRate(); if (!eff || this.state.amountMur <= 0) return null;
+    const totalMUR = this.state.amountMur;
+    const purchaseMUR = totalMUR / (1 + this.FRAIS_SERVICE / 100);
+    const totalMGA = purchaseMUR * eff;
+    const montantAEnvoyer = totalMGA / (1 + this.FRAIS_MOBILE / 100);
+    const retraitAr = this.state.incl ? this.fraisRetrait(montantAEnvoyer) : 0;
+    return { recuAr: montantAEnvoyer - retraitAr, walletAr: montantAEnvoyer };
+  }
+
+  async fetchRate() {
+    const urls = [
+      ['https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/mur.json', d => d && d.mur && d.mur.mga],
+      ['https://latest.currency-api.pages.dev/v1/currencies/mur.json', d => d && d.mur && d.mur.mga],
+      ['https://open.er-api.com/v6/latest/MUR', d => d && d.rates && d.rates.MGA],
+    ];
+    for (const [url, pick] of urls) {
+      try { const res = await fetch(url, { cache: 'no-store' }); if (!res.ok) continue; const v = pick(await res.json()); if (v && v > 0) { this.setState({ marketRate: v, live: true }); return; } } catch (e) {}
+    }
+  }
+
+  setMode(mode) { this.setState({ mode }, () => this.setFieldFromState()); }
+  setFieldFromState() {
+    const el = this.inpRef.current; if (!el) return;
+    if (this.state.mode === 'recevoir') el.value = this.state.amountAr > 0 ? new Intl.NumberFormat('fr-FR').format(Math.round(this.state.amountAr)) : '';
+    else el.value = this.state.amountMur > 0 ? new Intl.NumberFormat('fr-FR').format(Math.round(this.state.amountMur)) : '';
+  }
+  onAmount(e) { const v = this.parseNum(e.target.value); if (this.state.mode === 'recevoir') this.setState({ amountAr: v }); else this.setState({ amountMur: v }); }
+  onAmountBlur() { this.setFieldFromState(); }
+  onIncl(e) { this.setState({ incl: e.target.checked }); }
+
+  renderVals() {
+    const page = this.state.page;
+    const isDark = this.state.theme === 'dark';
+    const isRecevoir = this.state.mode === 'recevoir';
+
+    const navDefs = [
+      { id: 'accueil', label: 'Accueil' }, { id: 'avantages', label: 'Avantages' },
+      { id: 'etapes', label: 'Fonctionnement' }, { id: 'aide', label: 'Aide' },
+    ];
+    const linkBase = { fontSize: 16, fontWeight: 500, letterSpacing: '-0.48px', cursor: 'pointer', color: 'var(--ink-black)', transition: 'opacity .14s ease' };
+    const navLinks = navDefs.map(n => ({
+      label: n.label,
+      onClick: () => this.go(n.id),
+      style: { ...linkBase, opacity: page === n.id ? 1 : 0.55, fontWeight: page === n.id ? 600 : 500 },
+      mobileStyle: { ...linkBase, padding: '13px 16px', borderRadius: 7, opacity: page === n.id ? 1 : 0.7, background: page === n.id ? 'var(--canvas-cream)' : 'transparent' },
+    }));
+
+    const tbase = { flex: 1, textAlign: 'center', padding: '10px 8px', fontFamily: "'Sofia Sans',Arial,sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: '-0.2px', border: 0, borderRadius: 7, cursor: 'pointer', transition: 'background .2s,color .2s', background: 'transparent', color: 'var(--slate-gray)' };
+    const tactive = { ...tbase, background: 'var(--ink-black)', color: 'var(--text-on-ink)' };
+
+    const c = isRecevoir ? this.calcRecevoir() : this.calcEnvoyer();
+    let resultLabel = isRecevoir ? 'À payer' : 'Le bénéficiaire reçoit';
+    let resultValue = '—', resultSub = 'Saisissez un montant';
+    if (c) {
+      if (isRecevoir) {
+        resultValue = this.fmtMUR(c.totalMUR);
+        resultSub = 'Reçu à Madagascar : ' + this.fmtAr(c.recuAr) + (this.state.incl ? ' en espèces' : '');
+      } else {
+        resultValue = this.fmtAr(c.recuAr);
+        resultSub = 'Vous payez ' + this.fmtMUR(this.state.amountMur) + (this.state.incl ? ' · retrait inclus' : '');
+      }
+    }
+
+    const answerBase = { overflow: 'hidden', transition: 'max-height .32s ease' };
+    const faqDefs = [
+      { q: 'Combien de temps pour recevoir l\u2019argent ?', a: 'La plupart des transferts arrivent en quelques minutes. En cas de forte affluence, comptez au maximum quelques heures.' },
+      { q: 'Quels sont les frais ?', a: 'Le montant final est affiché clairement avant de valider : ce que vous payez et ce que reçoit votre proche, sans frais caché.' },
+      { q: 'Comment mon proche retire-t-il l\u2019argent ?', a: 'Il peut retirer en espèces, garder le montant sur son portefeuille mobile, ou l\u2019utiliser pour une recharge — au choix.' },
+      { q: 'Y a-t-il un plafond de montant ?', a: 'Des plafonds s\u2019appliquent selon la vérification de votre compte. Le détail est indiqué au moment de l\u2019envoi.' },
+      { q: 'Est-ce sécurisé ?', a: 'Oui. Les transferts sont protégés par une sécurité de niveau bancaire et chaque opération vous est confirmée par un reçu.' },
+    ];
+    const faqs = faqDefs.map((f, i) => {
+      const open = this.state.openFaq === i;
+      return { q: f.q, a: f.a, icon: open ? 'bi-dash-lg' : 'bi-plus-lg',
+        answerStyle: { ...answerBase, maxHeight: open ? 260 : 0 },
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })) };
+    });
+
+    return {
+      isDesktop: !this.state.isMobile, isMobile: this.state.isMobile,
+      menuOpen: this.state.menuOpen, menuIcon: this.state.menuOpen ? 'bi-x-lg' : 'bi-list',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      themeIcon: isDark ? 'bi-sun' : 'bi-moon-stars', toggleTheme: () => this.toggleTheme(),
+      navLinks,
+      goHome: () => this.go('accueil'), goStart: () => this.goStart(),
+      goEtapes: () => this.go('etapes'), goAide: () => this.go('aide'),
+      isAccueil: page === 'accueil', isAvantages: page === 'avantages', isEtapes: page === 'etapes', isAide: page === 'aide',
+
+      recevoirStyle: isRecevoir ? tactive : tbase, envoyerStyle: isRecevoir ? tbase : tactive,
+      toggleRecevoir: () => this.setMode('recevoir'), toggleEnvoyer: () => this.setMode('envoyer'),
+      fieldLabel: isRecevoir ? 'Montant à recevoir' : 'Vous envoyez', fieldUnit: isRecevoir ? 'Ar' : 'MUR',
+      inpRef: this.inpRef, cardRef: this.cardRef,
+      onAmount: (e) => this.onAmount(e), onAmountBlur: () => this.onAmountBlur(), onIncl: (e) => this.onIncl(e),
+      onTilt: (e) => this.onTilt(e), onTiltLeave: () => this.onTiltLeave(),
+      resultLabel, resultValue, resultSub,
+      rateNote: this.state.live ? 'Taux du jour' : 'Taux indicatif',
+
+      benefits: [
+        { icon: 'bi-eye', title: 'Montant transparent', body: 'Vous voyez exactement ce que reçoit votre proche avant de valider. Aucun frais caché, jamais.' },
+        { icon: 'bi-lightning-charge', title: 'Reçu en minutes', body: 'L\u2019argent arrive rapidement sur le portefeuille mobile du bénéficiaire à Madagascar.' },
+        { icon: 'bi-shield-check', title: 'Sécurité bancaire', body: 'Chaque transfert est protégé et confirmé par un reçu que vous pouvez partager.' },
+        { icon: 'bi-translate', title: 'En français et malgache', body: 'Une expérience pensée pour la diaspora, avec un support qui parle votre langue.' },
+      ],
+      steps: [
+        { num: '01', icon: 'bi-input-cursor-text', title: 'Indiquez le montant', body: 'Saisissez ce que vous voulez envoyer ou ce que votre proche doit recevoir. Le montant s\u2019affiche instantanément.' },
+        { num: '02', icon: 'bi-arrow-left-right', title: 'Conversion instantanée', body: 'La conversion s\u2019applique au taux du jour. Tout est clair avant de confirmer.' },
+        { num: '03', icon: 'bi-check2-circle', title: 'Reçu à Madagascar', body: 'Le bénéficiaire reçoit ses ariary en minutes, prêts à retirer ou à dépenser.' },
+      ],
+      faqs,
+      year: new Date().getFullYear(),
+    };
+  }
+}
+</script>
+</body>
+</html>

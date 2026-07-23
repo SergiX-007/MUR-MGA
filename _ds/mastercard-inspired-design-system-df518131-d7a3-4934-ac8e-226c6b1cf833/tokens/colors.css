@@ -1,0 +1,53 @@
+:root{
+  /* ---- Brand mark (logo only — never UI colors) ---- */
+  --brand-red:#EB001B;      /* Mastercard mark left circle */
+  --brand-yellow:#F79E1B;   /* Mastercard mark right circle */
+
+  /* ---- Ink / near-black (warm) ---- */
+  --ink-black:#141413;      /* primary CTAs, headline & body text, footer surface */
+  --charcoal:#262627;       /* softer black text alternate */
+
+  /* ---- Grays / muted text ---- */
+  --slate-gray:#696969;     /* muted secondary text, eyebrow alt, disabled */
+  --granite:#555555;        /* inline body accent */
+  --graphite:#565656;       /* link alternate */
+  --dust-taupe:#D1CDC7;     /* whisper text, low-contrast placeholder */
+
+  /* ---- Surfaces ---- */
+  --canvas-cream:#F3F0EE;   /* page canvas — warm putty, never white */
+  --lifted-cream:#FCFBFA;   /* nested raised sections (paper on paper) */
+  --white:#FFFFFF;          /* nav pill, modals, satellite CTAs, secondary fills */
+  --soft-bone:#F4F4F4;      /* cool-gray alt surface */
+  --whisper-cream:#E8E2DA;  /* ghost-watermark cream-on-cream headline */
+
+  /* ---- Signal / accent (use sparingly) ---- */
+  --signal-orange:#CF4500;      /* consent / legal actions only */
+  --signal-orange-light:#F37338;/* orbital arcs & carousel indicators only */
+  --clay-brown:#9A3A0A;         /* secondary link-style buttons */
+
+  /* ---- Semantic ---- */
+  --link-blue:#3860BE;      /* inline links / info callouts */
+
+  /* ================= Semantic aliases ================= */
+  --bg-canvas:var(--canvas-cream);
+  --bg-lifted:var(--lifted-cream);
+  --bg-inverse:var(--ink-black);
+  --surface-card:var(--white);
+  --surface-alt:var(--soft-bone);
+
+  --text-heading:var(--ink-black);
+  --text-body:var(--ink-black);
+  --text-muted:var(--slate-gray);
+  --text-whisper:var(--dust-taupe);
+  --text-inverse:var(--white);
+  --text-on-ink:var(--canvas-cream);
+  --text-link:var(--link-blue);
+
+  --accent-signal:var(--signal-orange);
+  --accent-arc:var(--signal-orange-light);
+
+  --border-ink:var(--ink-black);
+  --border-hairline:rgba(20,20,19,.5);
+  --border-on-ink:rgba(255,255,255,.4);
+  --divider-on-ink:rgba(255,255,255,.3);
+}
